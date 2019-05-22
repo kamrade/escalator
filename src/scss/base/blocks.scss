@@ -1,0 +1,43 @@
+.page {
+  // padding: 144px 0;
+}
+
+.slide {
+  font-size: 6.81944vw;
+  font-weight: bold;
+  line-height: 1;
+  height: 100vh;
+  display: flex;
+  border-bottom: 1px solid $gray-300;
+
+  .slide-content {
+    margin: auto 0;
+    position: relative;
+  }
+
+  .slide-text-title {
+    font-family: 'Cartograph Sans CF';
+    letter-spacing: -4px;
+    margin-bottom: 1rem;
+    transition: all .4s .5s ease;
+    opacity: 0;
+  }
+
+  .slide-text-support {
+    font-size: 32px;
+    line-height: 1.5;
+    font-weight: normal;
+    transition: all .4s .1s ease;
+    opacity: 0;
+  }
+
+  &.active {
+    .slide-text-title {
+      opacity: 1;
+    }
+    .slide-text-support {
+      opacity: 1;
+    }
+  }
+
+}

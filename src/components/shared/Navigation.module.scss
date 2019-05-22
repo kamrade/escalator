@@ -1,0 +1,48 @@
+@import '~scss/bootstrap/mixins';
+@import '~scss/bootstrap/variables';
+@import '~scss/bootstrap/animations';
+
+.appNavigation {
+  position: fixed;
+  right: 2rem;
+  top: 1rem;
+
+  .navigationLink {
+    display: block;
+    margin-bottom: 1rem;
+    text-align: right;
+    text-decoration: none;
+    color: $gray-900;
+    transition: all .2s ease;
+
+    .navigationLinkContent {
+      display: inline-block;
+      vertical-align: top;
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -0.25rem;
+        left: 0;
+        height: 2px;
+        background-color: $gray-900;
+        width: 100%;
+        transform: scaleX(0);
+        transform-origin: 100% 0 0;
+        transition: all .2s ease;
+      }
+    }
+
+    &:hover {
+      transform: translateX(-2px);
+
+      .navigationLinkContent {
+        &::after {
+          transform: scaleX(1);
+        }
+      }
+
+    }
+  }
+}

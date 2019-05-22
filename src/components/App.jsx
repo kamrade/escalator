@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
+import Navigation from 'components/shared/Navigation';
 
 import './App.scss';
 
@@ -15,6 +16,8 @@ function App() {
         <Route path="/home" component={ () => (<HomePage />)} />
         <Route path="/contacts" component={ () => (<ContactsPage /> )} />
       </Switch>
+
+      <Navigation />
 
     </div>
   );
