@@ -8,7 +8,9 @@ class Logo extends Component {
     return (
       <div className={styles.appLogo}>
         <div className="container">
-          <CardpayLogo />
+          <div className={styles.appLogoContainer}>
+            <CardpayLogo />
+          </div>
         </div>
       </div>
     );

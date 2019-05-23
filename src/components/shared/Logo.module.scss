@@ -7,7 +7,17 @@
   top: 0rem;
   left: 0;
   width: 100%;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   background-color: $white;
+
+  .appLogoContainer {
+    height: 104px;
+    width: 230px;
+    position: relative;
+    svg {
+      height: 100%;
+      width: 100%;
+    }
+  }
 }

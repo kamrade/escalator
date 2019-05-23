@@ -1,0 +1,24 @@
+@import '~scss/bootstrap/mixins';
+@import '~scss/bootstrap/variables';
+@import '~scss/bootstrap/animations';
+
+.slide-01-counter {
+  width: 144px;
+  height: 78px;
+  background-color: $white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+
+  .counter-element {
+    position: absolute;
+    top: 0;
+    left: 1rem;
+    transform: translateY(100px);
+    &.static {
+      transform: translateY(0px);
+    }
+  }
+
+}

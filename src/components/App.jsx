@@ -4,8 +4,8 @@ import Navigation from 'components/shared/Navigation';
 
 import './App.scss';
 
-import HomePage from 'components/pages/HomePage';
-import ContactsPage from 'components/pages/ContactsPage';
+import HomePage from 'components/pages/HomePage/HomePage';
+import StickyPage from 'components/pages/StickyPage/StickyPage';
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
 
       <Switch>
         <Route path="/home" component={ () => (<HomePage />)} />
-        <Route path="/contacts" component={ () => (<ContactsPage /> )} />
+        <Route path="/sticky" component={ () => (<StickyPage /> )} />
       </Switch>
 
       <Navigation />

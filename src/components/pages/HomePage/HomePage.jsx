@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Controller, Scene } from 'react-scrollmagic';
 
-import { Tween, SplitLetters } from 'react-gsap';
+import { Tween } from 'react-gsap';
 
-import styles from './HomePage.module.scss';
+// import styles from './HomePage.module.scss';
+import Slide02 from './slides/Slide02';
 
 import Logo from 'components/shared/Logo';
 
@@ -44,7 +45,9 @@ class HomePage extends Component {
                 >
                   <div className="slide-content">
                     <div className="slide-text-title">10+ years</div>
-                    <div className="slide-text-support">of experience in fintech {progress}</div>
+                    <div className="slide-text-support">
+                      of experience in fintech {progress}
+                    </div>
                   </div>
                 </Tween>
               </div>
@@ -52,23 +55,19 @@ class HomePage extends Component {
 
           </Scene>
 
-          <Scene offset={this.state.slideHeight || 0} duration={this.state.slideHeight || 0} classToggle="active" triggerElement="#trigger" indicators={true}>
+          <Scene
+            offset={ this.state.slideHeight || 0 }
+            duration={ this.state.slideHeight || 0 }
+            triggerElement="#trigger"
+            indicators={true}
+          >
 
-            {(progress, event) => (<div className="slide">
-              <Tween
-                from={{
-                  left: '200px'
-                }}
-                ease="Strong.easeOut"
-                totalProgress={progress}
-                paused
-              >
-                <div className="slide-content">
-                  <div className="slide-text-support">Fast onboarding {progress}</div>
-                  <div className="slide-text-title">in 1 day</div>
-                </div>
-              </Tween>
-            </div>)}
+            {(progress, event) => (
+              <Slide02
+                progress={progress}
+                slideHeight={this.state.slideHeight}
+              />
+            )}
 
           </Scene>
         </Controller>

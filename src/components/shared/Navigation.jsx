@@ -13,8 +13,8 @@ class Navigation extends Component {
           <span className={styles.navigationLinkContent}>Home</span>
         </NavLink>
 
-        <NavLink activeClassName="activeLink" className={styles.navigationLink} to="/contacts">
-          <span className={styles.navigationLinkContent}>Developers</span>
+        <NavLink activeClassName="activeLink" className={styles.navigationLink} to="/sticky">
+          <span className={styles.navigationLinkContent}>Sticky</span>
         </NavLink>
 
         <NavLink activeClassName="activeLink" className={styles.navigationLink} to="/contacts">

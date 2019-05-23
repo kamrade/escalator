@@ -1,0 +1,20 @@
+@import '~scss/bootstrap/mixins';
+@import '~scss/bootstrap/variables';
+@import '~scss/bootstrap/animations';
+
+.sticky-page-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  .section-link {
+    padding: 1rem;
+    cursor: pointer;
+
+    &.active {
+      color: $primary !important;
+    }
+
+  }
+
+}
