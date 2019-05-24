@@ -39,7 +39,7 @@ class StickyPage extends Component {
   render() {
 
     return (
-      <div className="page container">
+      <div className="page container-fluid">
 
           <StickyPageNav />
 
@@ -52,11 +52,15 @@ class StickyPage extends Component {
               indicators={true}
               duration={this.state.slideHeight}
               pin={true}>
-              {(progress, event) => (
-                <div className="slide-container section1">
-                  <Slide01 progress={progress} />
-                </div>
-              )}
+              {(progress, event) => {
+
+                return (
+                  <div className="slide-container section1">
+                    <Slide01 progress={progress} />
+                  </div>
+                )
+
+              }}
             </Scene>
 
             <Scene

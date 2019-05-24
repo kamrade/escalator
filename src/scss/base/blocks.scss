@@ -1,6 +1,11 @@
 .bodymovin-wrapper {
-  height: 100px;
-  position: relative;
+  height: 100%;
+  position: fixed;
+  width: 60%;
+  right: 0;
+  top: 0;
+  z-index: -1;
+
   .react-bodymovin-container {
     height: 100%;
   }
