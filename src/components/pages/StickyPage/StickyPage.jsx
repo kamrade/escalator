@@ -8,17 +8,21 @@ import './StickyPage.scss';
 
 class StickyPage extends Component {
 
+  _offset;
+
   constructor(props) {
     super(props);
 
     this.state = {
-      slideHeight: 0
+      slideHeight: 0,
+      windowHeight: 0,
+      windowWidth:  0,
     }
-    this.resizeHandler   = this.resizeHandler.bind(this);
+    this.resizeHandler = this.resizeHandler.bind(this);
   }
 
   componentDidMount() {
-    this.setWindowHeight();
+    this.setWindowSize();
     window.addEventListener('resize', this.resizeHandler);
   }
 
@@ -27,19 +31,21 @@ class StickyPage extends Component {
   }
 
   resizeHandler() {
-    this.setWindowHeight();
+    this.setWindowSize();
   }
 
-  setWindowHeight() {
+  setWindowSize() {
     this.setState({
-      slideHeight: window.innerHeight
+      slideHeight: window.innerHeight * 6,
+      windowHeight: window.innerHeight,
+      windowWidth: window.innerWidth
     });
   }
 
   render() {
 
     return (
-      <div className="page container-fluid">
+      <div className="page">
 
           <StickyPageNav />
 
@@ -56,7 +62,10 @@ class StickyPage extends Component {
 
                 return (
                   <div className="slide-container section1">
-                    <Slide01 progress={progress} />
+                    <Slide01
+                      progress={progress}
+                      windowWidth={this.state.windowWidth}
+                      windowHeight={this.state.windowHeight}/>
                   </div>
                 )
 

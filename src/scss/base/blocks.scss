@@ -5,22 +5,41 @@
   right: 0;
   top: 0;
   z-index: -1;
+  overflow: hidden;
 
   .react-bodymovin-container {
     height: 100%;
+    width: 0;
+    margin-left: 50%;
+
+    svg {
+      height: 100%;
+      width: auto !important;
+      transform: translateX(-50%);
+    }
   }
 }
 
 .sticky-slide {
-  font-size: 6vw;
+  font-size: 4vw;
   position: relative;
-  line-height: 1;
-  letter-spacing: -2px;
+  line-height: 1.1;
+  letter-spacing: -1px;
   transform: translateY(-50%);
   @include cartograph();
+  width: 40%;
+
+  .description-text {
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: 0;
+    overflow: hidden;
+    @include work-sans();
+  }
 
   .sticky-slide-text-content {
     position: relative;
+    padding: 30px;
   }
 }
 

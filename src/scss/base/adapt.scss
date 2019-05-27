@@ -1,0 +1,23 @@
+@media screen and (max-width: 1024px) {
+
+  #slide-animation {
+    .slide-animation.active {
+      z-index: -1;
+    }
+  }
+
+  .sticky-slide {
+    font-size: 8vw;
+    width: 100%;
+
+    .sticky-slide-text-content {
+      background: rgba(255,255,255,0.9);
+    }
+
+  }
+
+  .bodymovin-wrapper {
+    width: 100%;
+  }
+
+}

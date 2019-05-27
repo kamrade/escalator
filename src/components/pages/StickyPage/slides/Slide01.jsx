@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Tween, SplitLetters } from 'react-gsap';
 
-import ReactBodymovin from 'react-bodymovin';
-import animation from './animation.json';
+import SlideAnimation from './SlideAnimation';
 
 import './Slide01.scss';
 
 class Slide01 extends Component {
-
-  bodymovin;
 
   breakpointIn = 0.3;
   breakpointOut = 0.7;
@@ -16,28 +14,8 @@ class Slide01 extends Component {
   cursorBreakpointIn = 0.1;
   cursorBreakpointOut = 0.9;
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      totalFrames: 0,
-      frameRate: 0
-    };
-  }
-
-  componentDidMount() {
-    this.bodymovin.animation.isPaused = true;
-    this.setState({
-      totalFrames: this.bodymovin.animation.totalFrames,
-      frameRate: this.bodymovin.animation.frameRate,
-    });
-  }
-
-  // Анимируем currentFrame немного с костылями.
-  shouldComponentUpdate(props) {
-    let currentFrame = Math.round(this.state.totalFrames * props.progress * this.state.frameRate);
-    this.bodymovin.animation.goToAndStop( currentFrame );
-    return true;
-  }
+  // NODES
+  stickySlideNode;
 
   // Анимация typewriter
   getProgress() {
@@ -66,13 +44,33 @@ class Slide01 extends Component {
   }
 
   // При уходе с кадра курсор растягивается по Y
-  getScaleCursor() {
+  getCursorStyle() {
+
+    let containerWidth = this.stickySlideNode ? this.stickySlideNode.offsetWidth : 0;
+
     if (this.props.progress > 0.6) {
+
+      let scaling = this.props.progress * (1 + this.props.progress) * (1 + this.props.progress) * 2;
+
       return {
-        transform: `scaleY(${this.props.progress * 4})`
+        transform: `translateX(${containerWidth - 20}px) scaleY(${scaling})`,
       }
+
     } else {
-      return { transform: `scaleY(1)` }
+
+      let translateX = Math.round(containerWidth * this.props.progress + 1200 * this.props.progress) + 20;
+
+      if (translateX < (containerWidth - 20)) {
+        return {
+          transform: `translateX(${translateX}px) scaleY(1)`,
+        }
+      } else {
+        return {
+          transform: `translateX(${containerWidth - 20}px) scaleY(1)`
+        }
+      }
+
+
     }
   }
 
@@ -86,23 +84,16 @@ class Slide01 extends Component {
 
   render() {
 
-    const bodymovinOptions = {
-      loop: true,
-      autoplay: false,
-      prerender: true,
-      animationData: animation
-    }
-
     return (
-      <div className="sticky-slide">
+      <div ref={node => this.stickySlideNode = node} className="sticky-slide">
 
-        <div className="bodymovin-wrapper">
-          <ReactBodymovin ref={node => this.bodymovin = node} options={bodymovinOptions} />
-        </div>
+        <SlideAnimation
+          progress={this.props.progress} />
 
         <Tween
-          totalProgress={this.getOffsetProgress()}
+          totalProgress={this.props.progress}
           from={{y: '200px'}}
+          to={{y: '-200px'}}
           paused
         >
 
@@ -156,28 +147,41 @@ class Slide01 extends Component {
 
               </Tween>
 
+              <Tween
+                wrapper={<div/>}
+                paused
+                totalProgress={this.getProgress()}
+                from={{ width: '0'}}
+                ease="Power1.easeInOut">
+                <div className="description-text">
+                  <div style={{ width: '300px'}}>
+                    I analyze thousands of trading transactions and reveal patterns using my machine learning algorithms. Then I predict changes in certain points and signal to sell or buy currency.
+                  </div>
+                </div>
+              </Tween>
+
+
             </div>
 
-
-            <Tween
-              paused
-              totalProgress={this.getCursorProgressIn()}
-              to={{ x: '800' }}
-              ease="Power0.easeNone"
-            >
-              <div className={`slide-cursor-wrapper ${this.props.progress > 0.6 ? 'out' : ''}`} >
-                <div className="slide-cursor slide-01-cursor" style={this.getScaleCursor()} />
-              </div>
-            </Tween>
+            <div className={`slide-cursor-wrapper ${this.props.progress > 0.6 ? 'out' : ''}`} >
+              <div className="slide-cursor slide-01-cursor" style={this.getCursorStyle()} />
+            </div>
 
           </div>
 
         </Tween>
 
+
       </div>
     );
   }
 
+}
+
+Slide01.propTypes = {
+  progress: PropTypes.number,
+  windowWidth: PropTypes.number,
+  windowHeight: PropTypes.number,
 }
 
 export default Slide01;
