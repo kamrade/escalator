@@ -17,6 +17,17 @@
       width: auto !important;
       transform: translateX(-50%);
     }
+
+    @media screen and (min-aspect-ratio: 1000/600) {
+      width: 100%;
+      height: auto;
+      // margin-left: 0;
+
+      svg {
+        height: auto;
+        width: 100% !important;
+      }
+    }
   }
 }
 
